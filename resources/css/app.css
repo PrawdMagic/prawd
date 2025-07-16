@@ -1,0 +1,454 @@
+/* Custom font import - must be first */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    letter-spacing: -0.005em; /* sedikit rapat */
+    line-height: 1.2;
+    color: #dfe0e7;
+}
+
+/* Custom component styles */
+@layer components {
+    /* Sophisticated scrollbar styling */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    /* Enhanced button styles */
+    .btn-primary {
+        @apply bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md;
+    }
+
+    .btn-secondary {
+        @apply bg-white hover:bg-gray-50 text-gray-700 font-medium px-4 py-2 rounded-lg border border-gray-300 transition-all duration-200 shadow-sm hover:shadow-md;
+    }
+
+    .btn-ghost {
+        @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100 font-medium px-3 py-2 rounded-lg transition-all duration-200;
+    }
+
+    /* Enhanced card styles */
+    .card {
+        @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100;
+    }
+
+    .card-hover {
+        @apply hover:shadow-lg hover:-translate-y-1;
+    }
+
+    /* Enhanced form inputs */
+    .input-field {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-white;
+    }
+
+    .input-field:focus {
+        @apply shadow-sm;
+    }
+
+    /* Status indicators */
+    .status-dot {
+        @apply w-2 h-2 rounded-full inline-block mr-2;
+    }
+
+    .status-draft {
+        @apply bg-gray-400;
+    }
+
+    .status-in-progress {
+        @apply bg-yellow-400;
+    }
+
+    .status-scheduled {
+        @apply bg-blue-400;
+    }
+
+    .status-published {
+        @apply bg-green-400;
+    }
+
+    /* Priority indicators */
+    .priority-high {
+        @apply border-l-4 border-red-500;
+    }
+
+    .priority-medium {
+        @apply border-l-4 border-yellow-500;
+    }
+
+    .priority-low {
+        @apply border-l-4 border-green-500;
+    }
+
+    /* Navigation styles */
+    .nav-item {
+        @apply flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer;
+    }
+
+    .nav-item:hover {
+        @apply bg-gray-100 text-gray-900;
+    }
+
+    .nav-item.active {
+        @apply bg-green-50 text-green-700 shadow-sm;
+    }
+
+    /* Channel indicator styles */
+    .channel-indicator {
+        @apply w-4 h-4 rounded flex items-center justify-center text-white text-xs;
+    }
+
+    /* Loading animation */
+    .loading-spinner {
+        @apply animate-spin rounded-full h-6 w-6 border-b-2 border-green-600;
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+        @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm;
+    }
+
+    .modal-content {
+        @apply bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+        @apply w-64 bg-white border-r border-gray-200 flex flex-col h-screen;
+    }
+
+    .sidebar-header {
+        @apply p-6 border-b border-gray-200;
+    }
+
+    .sidebar-content {
+        @apply flex-1 p-4 overflow-y-auto custom-scrollbar;
+    }
+
+    .sidebar-footer {
+        @apply p-4 border-t border-gray-200;
+    }
+
+    /* Header styles */
+    .app-header {
+        @apply bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between;
+    }
+
+    /* Content area styles */
+    .content-area {
+        @apply flex-1 p-6 overflow-y-auto custom-scrollbar bg-gray-50;
+    }
+
+    /* Search input enhancement */
+    .search-input {
+        @apply relative;
+    }
+
+    .search-input input {
+        @apply pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent w-full transition-all duration-200;
+    }
+
+    .search-input input:focus {
+        @apply shadow-sm w-96;
+    }
+
+    /* Filter dropdown styles */
+    .filter-dropdown {
+        @apply px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white cursor-pointer transition-all duration-200;
+    }
+
+    /* Content card enhancements */
+    .content-card {
+        @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 p-6 border-l-4;
+    }
+
+    .content-card:hover {
+        @apply transform -translate-y-1;
+    }
+
+    /* Badge styles */
+    .badge {
+        @apply px-3 py-1 rounded-full text-xs font-medium;
+    }
+
+    .badge-gray {
+        @apply bg-gray-100 text-gray-800;
+    }
+
+    .badge-yellow {
+        @apply bg-yellow-100 text-yellow-800;
+    }
+
+    .badge-blue {
+        @apply bg-blue-100 text-blue-800;
+    }
+
+    .badge-green {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .badge-red {
+        @apply bg-red-100 text-red-800;
+    }
+
+    /* Tooltip styles */
+    .tooltip {
+        @apply absolute z-10 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg;
+    }
+
+    /* Avatar styles */
+    .avatar {
+        @apply rounded-full flex items-center justify-center font-medium text-white;
+    }
+
+    .avatar-sm {
+        @apply w-6 h-6 text-xs;
+    }
+
+    .avatar-md {
+        @apply w-8 h-8 text-sm;
+    }
+
+    .avatar-lg {
+        @apply w-12 h-12 text-base;
+    }
+
+    /* Professional icon button styles */
+    .icon-button {
+        @apply p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 text-gray-400 hover:text-gray-600;
+    }
+
+    .icon-button-primary {
+        @apply p-2 hover:bg-green-100 rounded-lg transition-colors duration-200 text-green-600 hover:text-green-700;
+    }
+
+    /* Grid layout enhancements */
+    .content-grid {
+        @apply grid gap-6;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+
+    /* Empty state styles */
+    .empty-state {
+        @apply text-center py-12;
+    }
+
+    .empty-state-icon {
+        @apply w-12 h-12 text-gray-300 mx-auto mb-4;
+    }
+
+    .empty-state-title {
+        @apply text-lg font-medium text-gray-900 mb-2;
+    }
+
+    .empty-state-description {
+        @apply text-gray-500;
+    }
+}
+
+/* Custom utilities */
+@layer utilities {
+    /* Glass morphism effect */
+    .glass {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Gradient backgrounds */
+    .gradient-green {
+        background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .gradient-blue {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    }
+
+    /* Text gradients */
+    .text-gradient-green {
+        background: linear-gradient(135deg, #10b981, #059669);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Custom shadows */
+    .shadow-soft {
+        box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .shadow-medium {
+        box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .shadow-strong {
+        box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    /* Animation utilities */
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.4s ease-out;
+    }
+
+    .animate-scale-in {
+        animation: scaleIn 0.2s ease-out;
+    }
+
+    .content-spacing {
+        @apply lg:ml-[140px] xl:ml-[536px] lg:mr-4 lg:my-4;
+    }
+
+    .sidebar-recent {
+        @apply lg:fixed lg:left-[136px] lg:top-4 lg:bottom-4 lg:w-80;
+    }
+
+    /* Hide scrollbar completely but keep scroll functionality */
+    .hide-scrollbar {
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+
+    /* CSS Scroll Snap for Calendar Cards - UPDATED */
+    .snap-y {
+        scroll-snap-type: y mandatory;
+        scroll-padding-top: 24px; /* Naikan dari 16px */
+        scroll-padding-bottom: 24px;
+    }
+
+    .snap-mandatory {
+        scroll-snap-type: y mandatory;
+    }
+
+    .snap-start {
+        scroll-snap-align: start;
+        scroll-snap-stop: always; /* Force snap di setiap card */
+    }
+
+    .snap-smooth {
+        scroll-behavior: smooth;
+    }
+
+    .sidebar-profile-bottom {
+        margin-top: auto;
+    }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in-stagger {
+    animation: slideInUp 0.4s ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+    .sidebar {
+        @apply hidden;
+    }
+
+    .content-area {
+        @apply p-4;
+    }
+
+    .app-header {
+        @apply px-4 py-3;
+    }
+
+    .search-input input:focus {
+        @apply w-full;
+    }
+}
